@@ -1,0 +1,75 @@
+
+        [OperationContract]
+        decimal getTotalSales();
+
+        [OperationContract]
+        int getTotalNumberOfProducts();
+
+        [OperationContract]
+        int getTotalNumberOfUsers();
+
+
+
+
+      public decimal getTotalSales()
+        {
+            decimal sales = data.Order_Items.Sum(o => o.Price);
+            return sales;
+        }
+
+        public int getTotalNumberOfUsers()
+        {
+            int totalUsers = data.Users.Count();
+            return totalUsers;
+        }
+
+        public int getTotalNumberOfProducts()
+        {
+            int totalNumberOfUsers = data.Menu_Items.Count();
+            return totalNumberOfUsers;
+        }
+
+        public string GetDashboardSummary()
+        {
+            StringBuilder html = new StringBuilder();
+
+            html.Append("<div class='flex flex-1 flex-col md:flex-row lg:flex-row mx-2'>");
+
+            // Total Sales Section
+            html.Append("<div class='shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-1/4 mx-2'>");
+            html.Append("<div class='p-4 flex flex-col'>");
+            html.AppendFormat("<a href=\"#\" class=\"no-underline text-white text-2xl\">R\""+getTotalSales()+"\"</a>\"");
+            html.Append("<a href='#' class='no-underline text-white text-lg'>Total Sales</a>");
+            html.Append("</div>");
+            html.Append("</div>");
+
+            // Total Cost Section
+            html.Append("<div class='shadow bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-1/4 mx-2'>");
+            html.Append("<div class='p-4 flex flex-col'>");
+            html.Append("<a href='#' class='no-underline text-white text-2xl'>R 10000</a>");
+            html.Append("<a href='#' class='no-underline text-white text-lg'>Total Cost</a>");
+            html.Append("</div>");
+            html.Append("</div>");
+
+            // Total Users Section
+            html.Append("<div class='shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2'>");
+            html.Append("<div class='p-4 flex flex-col'>");
+            html.Append("<a href='#' class='no-underline text-white text-2xl'>\""+getTotalNumberOfUsers()+"\"</a>");
+            html.Append("<a href='#' class='no-underline text-white text-lg'>Total Users</a>");
+            html.Append("</div>");
+            html.Append("</div>");
+
+            // Total Products Section
+            html.Append("<div class='shadow bg-success border-l-8 hover:bg-success-dark border-success-dark mb-2 p-2 md:w-1/4 mx-2'>");
+            html.Append("<div class='p-4 flex flex-col'>");
+            html.Append("<a href='#' class='no-underline text-white text-2xl'>\""+getTotalNumberOfProducts()+"\"</a>");
+            html.Append("<a href='#' class='no-underline text-white text-lg'>Total Products</a>");
+            html.Append("</div>");
+            html.Append("</div>");
+
+            html.Append("</div>");
+
+            return html.ToString();
+        }
+		
+		

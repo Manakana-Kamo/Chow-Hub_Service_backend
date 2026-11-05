@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ChowHub">
+  <DataContextMoniker Name="/ChowHubDataContext" />
+  <nestedChildShapes>
+    <classShape Id="dae6be67-6679-4561-b221-343c6444c345" absoluteBounds="3.125, 2.875, 2, 2.5401025390625">
+      <DataClassMoniker Name="/ChowHubDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da71a327-bc06-4e68-87ee-5e12fbdf9361" absoluteBounds="3.1399999999999997, 3.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="08683bdf-b041-4d22-a050-34d1ae88c959" absoluteBounds="0.5, 0.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/ChowHubDataContext/Menu_Item" />
+      <nestedChildShapes>
+        <elementListCompartment Id="58746aca-9e9b-441f-afbc-65d29834e59d" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3c8e5310-affe-4b23-b360-b1b692fccd10" absoluteBounds="0.5, 3.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ChowHubDataContext/Reservation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a6d031cd-f308-49d9-9bda-c48609cd7a77" absoluteBounds="0.51499999999999968, 3.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ea625a12-92bd-425c-b611-93b9d52d9513" absoluteBounds="3.125, 0.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ChowHubDataContext/Order_Item" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bf25a3dc-51ae-45d9-99bc-8e1a5c7a3cb0" absoluteBounds="3.14, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 1.48159912109375); (3.125 : 1.48159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ChowHubDataContext/Menu_Item/Menu_Item_Order_Item" />
+      <nodes>
+        <classShapeMoniker Id="08683bdf-b041-4d22-a050-34d1ae88c959" />
+        <classShapeMoniker Id="ea625a12-92bd-425c-b611-93b9d52d9513" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="910719e2-76cf-42ee-ab63-8de6597313bc" absoluteBounds="5.75, 1.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/ChowHubDataContext/User_Order" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec091ca1-9f5e-4a9b-8167-df3bc73d7bcb" absoluteBounds="5.765, 1.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.75 : 1.91909912109375); (5.125 : 1.91909912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ChowHubDataContext/User_Order/User_Order_Order_Item" />
+      <nodes>
+        <classShapeMoniker Id="910719e2-76cf-42ee-ab63-8de6597313bc" />
+        <classShapeMoniker Id="ea625a12-92bd-425c-b611-93b9d52d9513" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 3.39505126953125); (5.75 : 3.39505126953125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ChowHubDataContext/User/User_User_Order" />
+      <nodes>
+        <classShapeMoniker Id="dae6be67-6679-4561-b221-343c6444c345" />
+        <classShapeMoniker Id="910719e2-76cf-42ee-ab63-8de6597313bc" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="7e755f4b-9b04-45fa-9800-1d20150c3e0e" absoluteBounds="1.75, 5.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ChowHubDataContext/Review" />
+      <nestedChildShapes>
+        <elementListCompartment Id="18b64056-6026-438f-a0df-bda129b18a48" absoluteBounds="1.7649999999999997, 6.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.5 : 2.68674967447917); (2.8125025 : 2.68674967447917); (2.8125025 : 5.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ChowHubDataContext/Menu_Item/Menu_Item_Review" />
+      <nodes>
+        <classShapeMoniker Id="08683bdf-b041-4d22-a050-34d1ae88c959" />
+        <classShapeMoniker Id="7e755f4b-9b04-45fa-9800-1d20150c3e0e" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.4375 : 5.4151025390625); (3.4375 : 5.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ChowHubDataContext/User/User_Review" />
+      <nodes>
+        <classShapeMoniker Id="dae6be67-6679-4561-b221-343c6444c345" />
+        <classShapeMoniker Id="7e755f4b-9b04-45fa-9800-1d20150c3e0e" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

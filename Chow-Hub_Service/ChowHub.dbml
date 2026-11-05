@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ChowHub_DB" Class="ChowHubDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\ChowHub_DB.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="ChowHub_DBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="U_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_Email" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="U_Title" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="U_Name" Type="System.String" DbType="VarChar(125) NOT NULL" CanBeNull="false" />
+      <Column Name="U_LastName" Type="System.String" DbType="VarChar(155) NOT NULL" CanBeNull="false" />
+      <Column Name="U_PhoneNumber" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="U_Type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="U_Password" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="U_Address" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Association Name="User_User_Order" Member="User_Orders" ThisKey="U_ID" OtherKey="U_ID" Type="User_Order" />
+      <Association Name="User_Review" Member="Reviews" ThisKey="U_ID" OtherKey="UserID" Type="Review" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Menu_Item" Member="Menu_Items">
+    <Type Name="Menu_Item">
+      <Column Name="MI_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MI_Name" Type="System.String" DbType="VarChar(155) NOT NULL" CanBeNull="false" />
+      <Column Name="MI_Description" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="MI_Price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="MI_Type" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MI_Image" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MI_Availability" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MI_Promo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Menu_Item_Order_Item" Member="Order_Items" ThisKey="MI_ID" OtherKey="MI_ID" Type="Order_Item" />
+      <Association Name="Menu_Item_Review" Member="Reviews" ThisKey="MI_ID" OtherKey="MI_ID" Type="Review" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Reservation" Member="Reservations">
+    <Type Name="Reservation">
+      <Column Name="R_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="R_Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="R_Time" Type="System.String" DbType="VarChar(7) NOT NULL" CanBeNull="false" />
+      <Column Name="R_Persons" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ClientNames" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ClientEmail" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ClientPhone" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Order_Item" Member="Order_Items">
+    <Type Name="Order_Item">
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MI_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Item_Name" Type="System.String" DbType="VarChar(155) NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Img" Type="System.String" DbType="VarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="Menu_Item_Order_Item" Member="Menu_Item" ThisKey="MI_ID" OtherKey="MI_ID" Type="Menu_Item" IsForeignKey="true" />
+      <Association Name="User_Order_Order_Item" Member="User_Order" ThisKey="OrderId" OtherKey="OrderId" Type="User_Order" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Order" Member="User_Orders">
+    <Type Name="User_Order">
+      <Column Name="OrderId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="U_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrderDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="Progress" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="DeliveryAddress" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="PaymentDetails" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="TotalAmount" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="DeliveryFee" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Association Name="User_Order_Order_Item" Member="Order_Items" ThisKey="OrderId" OtherKey="OrderId" Type="Order_Item" />
+      <Association Name="User_User_Order" Member="User" ThisKey="U_ID" OtherKey="U_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Review" Member="Reviews">
+    <Type Name="Review">
+      <Column Name="R_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="R_Value" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="R_Comment" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="R_Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="MI_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Menu_Item_Review" Member="Menu_Item" ThisKey="MI_ID" OtherKey="MI_ID" Type="Menu_Item" IsForeignKey="true" />
+      <Association Name="User_Review" Member="User" ThisKey="UserID" OtherKey="U_ID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
